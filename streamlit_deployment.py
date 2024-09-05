@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 # Load the pre-trained model
-model = joblib.load('rf_model.pkl')
+model = joblib.load('random_forest_model.pkl')
 
 # Function to calculate the median age for a given age group
 def get_age_class_median(age):
@@ -259,8 +259,8 @@ features = np.array([
 
 # Predict using the model
 if st.button("Predict"):
-    prediction = rf_model.predict(features)
-    prediction_proba = rf_model.predict_proba(features)
+    prediction = model.predict(features)
+    prediction_proba = model.predict_proba(features)
 
     # Display the result
     if prediction[0] == 0:
