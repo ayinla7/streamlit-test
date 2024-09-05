@@ -263,10 +263,18 @@ if st.button("Predict"):
     prediction_proba = model.predict_proba(features)
 
     # Display the result
-    if prediction[0] == 0:
-        st.write("The patient will be readmitted.")
+    # if prediction[0] == 0:
+    #     st.write("The patient will be readmitted.");
+    # else:
+    #     st.write("The patient will not be readmitted." + str(prediction[0]))
+    #     st.write("The patient will not be readmitted." + str(prediction))
+
+
+    if (prediction_proba[0][1] >= prediction_proba[0][0]):
+        st.write("The patient will be readmitted.");
     else:
         st.write("The patient will not be readmitted.")
-    
-    st.write(f"Probability of Readmission: {prediction_proba[0][1]:.4f}")
-    st.write(f"Probability of No Readmission: {prediction_proba[0][0]:.4f}")
+
+
+    st.write(f"Probability of Readmission: {(prediction_proba[0][1] * 100):.2f}%")
+    st.write(f"Probability of No Readmission: {(prediction_proba[0][0] * 100):.2f}%")
